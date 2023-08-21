@@ -17,7 +17,7 @@ import static com.Project.oopslab.model.product.*;
 
 public class ProductService {
     private final ProductRepository productRepository;
-    public void createproduct(Productrequest productrequest){
+    public void createproduct(Productrequest productrequest){//creating a nnew product using builder(functionm to make a product request)
     product Product = builder()
             .name(productrequest.getName())
             .description(productrequest.getDescription())
@@ -28,11 +28,11 @@ public class ProductService {
     }
 
     public List<ProductResponse> getAllProducts() {
-        List<product> Products = productRepository.findAll();
+        List<product> Products = productRepository.findAll();//finbdAll functionn is from MongoDb interface used in repo
     return Products.stream().map(this::mapToProductResponse).toList();
     }
 
-    private ProductResponse mapToProductResponse(product Product) {
+    private ProductResponse mapToProductResponse(product Product) {//function to give out a product 
         return ProductResponse.builder()
                 .id(Product.getId())
                 .name(Product.getName())
