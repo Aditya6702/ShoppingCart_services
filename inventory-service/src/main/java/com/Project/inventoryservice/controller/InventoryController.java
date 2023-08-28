@@ -1,9 +1,12 @@
 package com.Project.inventoryservice.controller;
 
+import com.Project.inventoryservice.dto.InventoryResponse;
 import com.Project.inventoryservice.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 //import org.springframework.http.HttpStatus;
 
 @RestController
@@ -12,9 +15,9 @@ import org.springframework.web.bind.annotation.*;
 public class InventoryController {
     private final InventoryService inventoryService;
 
-    @GetMapping("/{sku-code}")//to  retrive data
+    @GetMapping//to  retrive data
     @ResponseStatus(HttpStatus.OK)
-    public boolean isInStock(@PathVariable("sku-code") String skuCode){
+    public List<InventoryResponse> isInStock(@RequestParam List<String> skuCode){
         return inventoryService.isInStock(skuCode);
     }
 }
